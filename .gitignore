@@ -1,1 +1,15 @@
+# ----- IGNORE ALL BINARY FILES
+# Ignore all
+*
+# Unignore all with extensions
+!*.*
+# Unignore all dirs
+!*/
+
+
+# Ignore cargo(rust) output folder
 **/target/
+
+# Ignore vscode folders
+**/.vscode
+
