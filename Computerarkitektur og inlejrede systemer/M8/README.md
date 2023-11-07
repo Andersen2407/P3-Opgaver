@@ -14,14 +14,27 @@ and the selling of a book every 10 second.
 
   2. Write the guessing game in rust  
     - Write code in C which does the same thing  
-    - Try out both type of code – what are the differences (if any)?
+    - Try out both type of code – what are the differences (if any)?  
 
-  Rust code:
-   `$ cd ../M8/guessing_game` - Go into the directory
-   `$ cargo run` - run code
+  Rust code:  
+   `$ cd ../M8/guessing_game` - Go into the directory  
+   `$ cargo run` - run code  
 
-  C code
+  C code  
    `$ cd ../M8` - For C code  
-   `$ gcc GuessingGameC.c -o GuessingGameC` - compile code
-   `$ ./GussingGameC ` - run code
+   `$ gcc GuessingGameC.c -o GuessingGameC` - compile code  
+   `$ ./GussingGameC ` - run code  
+
+   Differences: 
+   - Exception handling is worse in C, compared to Rust.  
+   - Memory used:  
+        5.8M	Nov  6 09:36 M8/guessing_game/target/debug/guessing_game  
+        16K	Nov  6 09:31 M8/guessingGameC  
+
+        Optimized: (using `$ cargo --release`)  
+        4.5M Nov  6 09:39 M8/guessingGameC/target/release/guessing_game  
+        16K	Nov  6 09:31 M8/guessingGameC  
+
+   <mark style="background-color: #FFFF00">Highlighted text</mark>  
+
    
