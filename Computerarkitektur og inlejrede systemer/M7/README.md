@@ -26,7 +26,7 @@
 You may reuse code from previous.
 
         To run:  
-       `cd ../M7/Marketprogram` - Go into directory  
+       `cd ../M7/MarketProgram` - Go into directory  
         `$ make` - Run makefile to compile `Market.c`, `Seller.c`, and `Buyer.c`  
         Open three terminals, one to run each c file, run in following order.   
         `$ ./Market`  
