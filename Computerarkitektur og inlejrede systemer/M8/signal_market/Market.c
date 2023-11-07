@@ -7,15 +7,14 @@
 #include <signal.h>     // Use Signals
 #include "Market.h"
 
-// For signaling, we must have a static volatile atomic because of race conditions.
+// For signaling, we must have a static volatile atomic because of race conditions and scope.
 static volatile sig_atomic_t got_signal = 0;
 
 void sigint_callback(int signal)
 {
     // Instead of doing the shutdown here, we use the got_signal instead.
     // This is because we need to unmap the shared memory.
-    // This is easier in the scope of the shared memory because in here.
-    // We do not know the pointer. 
+    // This is easier in the scope of the shared memory pointer.
     printf("\nGraceful beautiful shutdown. Unlinking!");
     got_signal = 1;
 }
@@ -85,7 +84,7 @@ void main()
     }
 
     // Now that we have deallocated the shared memory we also need to remove the memory in the /mnt/dev/shm. 
-    // We also check if is was successful.
+    // We also check if it was successful.
     if (shm_unlink(SHARED_MEM_NAME) == -1) {
         perror("shm_unlink");
         exit(1);
