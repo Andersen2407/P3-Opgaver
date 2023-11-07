@@ -1,6 +1,5 @@
-Exercises:  
-  1. Based on your previous buying and selling book code - create a signal alarm that triggers the buying of a book every 5 second, 
-and the selling of a book every 10 second.  
+## Exercises:  
+  ### 1. Based on your previous buying and selling book code - create a signal alarm that triggers the buying of a book every 5 second, and the selling of a book every 10 second.  
     - It is free of choice if you wish to do this with your thread or process based code. (We are using process based)  
     - Add code that when pressing ctrl-c, you ensure a proper shutdown of all threads and memory you have used.  
      
@@ -12,7 +11,7 @@ and the selling of a book every 10 second.
   `$ ./SignalBuyer`   
   Note: Market can max have 10 books at any time.  
 
-  2. Write the guessing game in rust  
+  ### 2. Write the guessing game in rust  
     - Write code in C which does the same thing  
     - Try out both type of code – what are the differences (if any)?  
 
@@ -34,7 +33,4 @@ and the selling of a book every 10 second.
         Optimized: (using `$ cargo --release`)  
         4.5M Nov  6 09:39 M8/guessingGameC/target/release/guessing_game  
         16K	Nov  6 09:31 M8/guessingGameC  
-
-   <mark style="background-color: #FFFF00">Highlighted text</mark>  
-
    
