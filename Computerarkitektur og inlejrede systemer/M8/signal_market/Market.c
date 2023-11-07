@@ -3,12 +3,27 @@
 #include <stdlib.h> // exit(1)
 #include <sys/mman.h>   //mmap()
 #include <unistd.h>     // sleep
-#include <fcntl.h>      // no clue
-
+#include <fcntl.h>      // no cluex
+#include <signal.h>     // Use Signals
 #include "Market.h"
+
+// For signaling, we must have a static volatile atomic because of race conditions.
+static volatile sig_atomic_t got_signal = 0;
+
+void sigint_callback(int signal)
+{
+    // Instead of doing the shutdown here, we use the got_signal instead.
+    // This is because we need to unmap the shared memory.
+    // This is easier in the scope of the shared memory because in here.
+    // We do not know the pointer. 
+    printf("\nGraceful beautiful shutdown. Unlinking!");
+    got_signal = 1;
+}
 
 void main()
 {
+    signal(SIGINT, sigint_callback);
+
     // 1 = execute, 2 = write, 4 = read (https://chmod-calculator.com/)
     /*
     int mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP;   // 660
@@ -41,7 +56,7 @@ void main()
     // We need to temp store the vars of a book.
     // We do that in a buffer
     char buffer[10];
-    while (1)
+    while (got_signal == 0)
     {
         // Are there any books in the market curently?
         if (shared_mem_ptr->numberOfBooks > 0)
@@ -59,5 +74,20 @@ void main()
             printf("No books?\n");
         }
         sleep(1);
+    }
+
+    // When the siging signals comes
+    // Then we must deallocate the shared memory.
+    // We also check if the deallocation was a succes.
+    if (munmap(shared_mem_ptr, sizeof(shared_mem_ptr)) == -1) {
+        perror("munmap");
+        exit(1);
+    }
+
+    // Now that we have deallocated the shared memory we also need to remove the memory in the /mnt/dev/shm. 
+    // We also check if is was successful.
+    if (shm_unlink(SHARED_MEM_NAME) == -1) {
+        perror("shm_unlink");
+        exit(1);
     }
 }
