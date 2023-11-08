@@ -10,14 +10,18 @@
 
 **2. Sum-array**
   - Consider the procedure SUM-ARRAY in Figure 1. It computes the sum of the n numbers in array A[1…n].
+
     a. State a loop invariant for this procedure, and use its initialization, maintenance, and termination properties to show that the SUMARRAY procedure returns the sum of the numbers in A[1…n].
 
     b. Determine the exact and asymptotic complexity of the procedure.
-    
-    ![Figure 1: The SUM-ARRAY algorithm](image.png)
+
+<p align="center">
+  <img src="image.png" alt="Figure 1: The SUM-ARRAY algorithm" />
+</p>
+
  
 **3. Algorithm for Polynomial Evaluation**
-- You are given the coefficients, $\`𝑎_1,⋯,𝑎_n\`$ of a polynomial:
+- You are given the coefficients, $\ 𝑎_1,⋯,𝑎_n \$, of a polynomial:
 
 $$P(x) = sum_{k=0}^n a_k x^k = a_0 + a_1 x^2 + ... + a_n-1 x^n-1 + a_n x^n$$
 
