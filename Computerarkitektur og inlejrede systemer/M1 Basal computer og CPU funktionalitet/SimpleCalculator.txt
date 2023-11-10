@@ -1,0 +1,94 @@
+**Takes a string containing ascii numbers, converts them to ints and prints out the answer**
+
+	JMP start
+text1: 	DB "Result of "
+Num1: 	DB "5"   ; Number 1 to be added 
+ 	DB "+"
+Num2: 	DB "4"   ; Number 2 to be added 
+text3: 	DB "="  
+
+End: 	DB 0
+
+start:
+	MOV C, text1    ; Point to var 
+	MOV D, 232	; Point to output
+	CALL print
+
+	MOV C, Num1
+	MOV B, Num2
+
+	MOV A, [B]
+	SUB A, 48
+
+	MOV B, [C]
+	SUB B, 48
+
+	ADD A, B
+	ADD A, 48
+	MOV [D], A
+
+
+        HLT             ; Stop execution
+
+print:			; print(C:*from, D:*to)
+	PUSH A
+	PUSH B
+	MOV B, 0
+.loop:
+	MOV A, [C]	; Get char from var
+	MOV [D], A	; Write to output
+	INC C
+	INC D  
+	CMP B, [C]	; Check if end
+	JNZ .loop	; jump if not
+
+	POP B
+	POP A
+	RET
+
+**Takes 2 numbers from registers and puts them in bytes, then prints them out**
+
+	JMP start
+text1: DB "Result of "
+Num1:  DB "?"
+text2: DB "+"
+Num2:  DB "?"
+text3: DB "="
+Num3:  DB "?"
+   	DB 0
+
+byteplus:
+    ADD A, B
+    RET
+
+start:
+    MOV A, 2
+    MOV B, 1
+    PUSH A
+    PUSH B
+    CALL byteplus
+    ADD A, 48
+    MOV D, Num3
+    MOV [D], A
+    
+    POP B
+    POP A
+    ADD A, 48
+    ADD B, 48
+    MOV D, Num1
+    MOV [D], A
+    MOV D, Num2
+    MOV [D], B
+
+print:   		 ; print(C:*from, D:*to)
+    MOV B, 0
+    MOV C, text1
+    MOV D, 232
+.loop:
+    MOV A, [C]    ; Get char from var
+    MOV [D], A    ; Write to output
+    INC C
+    INC D  
+    CMP B, [C]    ; Check if end
+    JNZ .loop    ; jump if not
+    HLT

@@ -1,0 +1,81 @@
+Scrolls the text when it hits the end of the output in schwegi.
+                        
+                        JMP start
+hello: DB "HelloThisIsTheVerySadStory" ; Variable
+   	DB 0       	; String terminator
+start:
+                      	MOV C, hello	; Point to var
+                      	MOV A, 200 	;
+                      	MOV [A], 255  ;
+ 
+                      	MOV D, 232 	; Point to output
+                      	CALL print
+ 
+print:                                                                	; print(C:*from, D:*to)
+                      	PUSH A
+                      	PUSH B
+                      	MOV B, 0
+.loop:
+                      	MOV A, [C]  	; Get char from var
+                      	MOV [D], A  	; Write to output
+                      	INC C
+                      	INC D 
+ 
+.compare1:
+                      	CMP B, [C]   	; Check if end
+                      	JNZ .compare2                     	; jump if not
+                      	JMP .end      	;
+ 
+.compare2:
+                      	CMP D, [200]   ; Check if we reach the end of the print
+                      	JNZ .loop      	; Jump if not wrapped
+ 
+ 
+ 
+                      	MOV A, [C]  	; Get char from var
+                      	MOV [D], A  	; Write to output
+                      	INC C
+                      	INC D 
+                      	
+ 
+                      	JMP .mem1
+.wrap:          	
+                      	MOV D, 255 	; if we do jump
+                      	JMP .compare1                    	;
+ 
+.end:
+                      	POP B
+                      	POP A
+                      	MOV A, 255
+                      	MOV [A], B
+ 
+                      	HLT
+.mem1:
+                      	DEC D
+.mem2:
+                      	MOV B, [D]
+                      	PUSH B
+                      	POP B
+ 
+                      	MOV [D], A
+ 
+                      	DEC D
+ 
+                      	MOV B, [SP]
+ 
+                      	MOV A, [D]
+                      	PUSH A
+                      	POP A           	
+ 
+                      	MOV [D], B
+                      	MOV B, 0
+ 
+                      	DEC D
+ 
+                      	CMP D, 231
+                      	JNZ .mem2
+                      	
+                      	MOV A, [C]  	; Get char from var
+                      	MOV [D], A  	; Write to output
+ 
+                      	JMP .wrap

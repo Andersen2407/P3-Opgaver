@@ -1,0 +1,85 @@
+Extended to subtraction, multiplication and division plus added a selector.
+
+JMP start
+text1: DB "Result of "   	 ;     "Result of ?_?=?
+Num1:  DB "?"   		 ; E.g.  "Result of 3*2=6
+text2: DB "_"
+Num2:  DB "?"
+text3: DB "="
+Num3:  DB "?"
+   	DB 0
+
+byteplus:   		 ; A method for each operation
+    ADD A, B   	 ; Operates on the A register (with B)
+    RET
+bytesub:
+    SUB A, B
+    RET
+bytemul:
+    MUL B
+    RET
+bytediv:
+    DIV B
+    RET
+
+start:
+    MOV A, 7    ; First number
+    MOV B, 3    ; Second number
+    MOV C, 3     ; Selector. 0=+, 1=-, 2=*, 3=/ (floor div /)
+    PUSH A   	 ; Save First number on stack
+    PUSH B   	 ; Save Second number on stack
+    
+    CMP C, 0    ; If-statements to check for type of operation
+    JZ plus   	 ; Depending on operation, jump to label below
+    CMP C, 1
+    JZ sub
+    CMP C, 2
+    JZ mul
+    CMP C, 3
+    JZ div
+plus:
+    CALL byteplus
+    MOV D, 43    ; hex "+"
+    JMP finish
+sub:
+    CALL bytesub
+    MOV D, 45    ; hex "-"
+    JMP finish
+mul:
+    CALL bytemul
+    MOV D, 42    ; hex "*"
+    JMP finish
+div:
+    CALL bytediv
+    MOV D, 47    ; hex "/"
+    JMP finish
+
+finish:
+    MOV B, text2
+    MOV [B], D    ; Put operator on byte-string for later
+    
+    ADD A, 48    ; Convert answer to ascii
+    MOV D, Num3    ; Insert answer(ascii-form) on byte-string
+    MOV [D], A
+    
+    POP B   	 ; Get first and second number back from stack
+    POP A
+    ADD A, 48    ; Convert to ascii
+    ADD B, 48
+    MOV D, Num1    ; Insert first number into byte-string
+    MOV [D], A
+    MOV D, Num2    ; Insert second number into byte-string
+    MOV [D], B
+
+print:
+    MOV B, 0
+    MOV C, text1    ; Standard printing loop
+    MOV D, 232
+.loop:
+    MOV A, [C]    ; Get char from var
+    MOV [D], A    ; Write to output
+    INC C
+    INC D  
+    CMP B, [C]    ; Check if end
+    JNZ .loop    ; jump if not
+    HLT

@@ -1,0 +1,37 @@
+Writes the text from the right and slowly scrolls it to the left (writing it out as it runs)
+
+JMP start
+hello:	DB "Hello World" ; Variable
+	DB 0	; String terminator
+start:
+	MOV C, hello    ; Point to var 
+	MOV D, 255	; Point to output
+	CALL print
+        HLT             ; Stop execution
+
+print:			; print(C:*from, D:*to)
+	MOV B, 0
+.loop:
+	MOV D, 255
+	MOV A, [C]	; Get char from var
+	MOV [D], A	; Write to output
+	DEC D
+	MOV D, 232
+	CALL .move
+
+.move:
+	MOV A, [D+1] ;
+	MOV [D], A ;
+	MOV [D+1], 0x00 ;
+	INC D
+	CMP D, 255 ;
+	JNZ .move
+	CMP B, [C] ;
+	JNZ .reset
+	CALL start
+
+.reset:
+	INC C
+	POP A
+	POP B
+	CALL print

@@ -1,0 +1,34 @@
+JMP start
+hello: DB "Hello world! 1234567890abcdefghijklmnop" ; Variable
+   	DB 0    ; String terminator
+
+start:
+    MOV C, hello	; Point to var
+    CALL print
+    	HLT         	; Stop execution
+
+print:   		 ; print(C:*from, D:*to)
+    MOV B, 0
+
+.reset:
+    MOV D, 231;
+    call clear
+    MOV D, 231;
+.loop:
+    INC D
+    MOV A, [C]    ; Get char from var
+    MOV [D], A    ; Write to output
+    INC C
+
+    CMP D, 255;
+    JZ .reset;
+    
+    CMP B, [C]    ; Check if end
+    JNZ .loop    ; jump if not
+    RET
+clear:
+    INC D;
+    MOV [D], B;
+    CMP D, 255;
+    JNZ clear;
+    RET
