@@ -32,7 +32,7 @@ $ sudo rmmod KernelModule.ko
 Funktionalitet: ram disk eller storage som er hurtigt.
 
 #### Solution
-Provided by OpenAllah-GPT v3.5 (inshallah mode)
+Provided by OpenAllah-GPT v3.5 (inshallah turbo)
 ![idk](https://media.tenor.com/1YaOiH6FJv8AAAAd/creative-alah.gif)
 
 

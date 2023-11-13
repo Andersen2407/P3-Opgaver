@@ -126,4 +126,3 @@ static void __exit chardev_exit(void) {
 
 module_init(chardev_init);
 module_exit(chardev_exit);
-
