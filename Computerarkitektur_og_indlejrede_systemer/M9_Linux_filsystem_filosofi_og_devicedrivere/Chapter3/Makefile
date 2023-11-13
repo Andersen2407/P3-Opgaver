@@ -1,10 +1,9 @@
 obj-m += KernelModule.o
-KDIR = /lib/modules/$(shell uname -r)/build
-
-
-all:
-	make -C $(KDIR) M=$(shell pwd) modules
-
-
-clean:
-	make -C $(KDIR) M=$(shell pwd) clean
+ 
+PWD := $(CURDIR) 
+ 
+all: 
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules 
+ 
+clean: 
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
