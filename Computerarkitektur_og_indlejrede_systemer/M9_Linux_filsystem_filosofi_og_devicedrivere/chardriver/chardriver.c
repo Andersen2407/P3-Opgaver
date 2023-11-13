@@ -13,7 +13,7 @@ static int actRdPos = 0;
 static int nrBytesWrittenFromStart = 0;
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Gruppe 253"); // :)
+MODULE_AUTHOR("Gruppe253");
 MODULE_DESCRIPTION("Character device driver for reading, writing, etc.");
 MODULE_VERSION("1.0"); 
 
@@ -29,6 +29,7 @@ static int chardev_release(struct inode *inode, struct file *filp) {
 
 static ssize_t chardev_read(struct file *filp, char *buf, size_t count, loff_t *f_pos) {
     int bytes_to_read = count;
+
     if (actRdPos + count > DISK_SIZE) {
         bytes_to_read = DISK_SIZE - actRdPos;
     }
@@ -36,6 +37,7 @@ static ssize_t chardev_read(struct file *filp, char *buf, size_t count, loff_t *
         return -EFAULT;
     }
     actRdPos += bytes_to_read;
+    pr_info("CharDriver READ");
     return bytes_to_read;
 }
 
@@ -49,6 +51,7 @@ static ssize_t chardev_write(struct file *filp, const char *buf, size_t count, l
     }
     actWrPos += bytes_to_write;
     nrBytesWrittenFromStart += bytes_to_write;
+    pr_info("CharDriver WRITE");
     return bytes_to_write;
 }
 
@@ -97,9 +100,9 @@ static int major_num;
 static struct cdev chardev_cdev;
 
 static int __init chardev_init(void) {
-    dev_t dev = 0;
+    dev_t dev = 9000;
 
-    if (alloc_chrdev_region(&dev, 0, 1, "chardev") < 0) {
+    if (alloc_chrdev_region(&dev, 0, 1, "char_driver_test") < 0) {
         return -1;
     }
 
