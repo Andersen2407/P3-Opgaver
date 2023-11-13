@@ -6,6 +6,10 @@
 # Unignore all dirs
 !*/
 
+!MakeFile
+!Makefile
+!makefile
+
 
 # Ignore cargo(rust) output folder
 **/target/
