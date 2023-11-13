@@ -32,7 +32,9 @@ $ sudo rmmod KernelModule.ko
 Funktionalitet: ram disk eller storage som er hurtigt.
 
 #### Solution
-![provided by OpenAllah-GPT v3.5 (inshallah mode)](https://tenor.com/view/creative-alah-hacks-me-after-becoming-one-with-allah-gif-15258491)
+Provided by OpenAllah-GPT v3.5 (inshallah mode)
+![idk](https://media.tenor.com/1YaOiH6FJv8AAAAd/creative-alah.gif)
+
 
 [Følger dette tutorial om char device drivers](https://www.moodle.aau.dk/mod/page/view.php?id=1598404)
 
