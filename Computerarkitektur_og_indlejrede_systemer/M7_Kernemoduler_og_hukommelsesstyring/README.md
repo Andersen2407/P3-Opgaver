@@ -11,6 +11,8 @@
         Using `$ pmap -X [PID]` to find the memory map  
         ![PID_Analyzes2](https://github.com/Andersen2407/P3-Opgaver/assets/112859566/7fd13128-6892-4d25-8b91-cad0e377276c)
 
+        Here we can see that most of the memory used is heap, which is what malloc() uses. Stack is also used for our few intial variables
+
       - What happens if you attempt to access free’d memory?  
         `AccessMemory.c` - Attempts to acess free'd memory  
         Outputs (seperated by comma): 0 , 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 0, 0, 1949679632, 22024, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38.  
