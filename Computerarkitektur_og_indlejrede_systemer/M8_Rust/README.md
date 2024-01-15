@@ -10,6 +10,9 @@
   `$ ./SignalSeller`  
   `$ ./SignalBuyer`   
   Note: Market can max have 10 books at any time.  
+    
+  To show the shared memory, navigate to shm folder `$ cd /dev/shm` and do `$ xxd bookstore`.
+
 
   **2. Write the guessing game in rust**    
     - Write code in C which does the same thing  
