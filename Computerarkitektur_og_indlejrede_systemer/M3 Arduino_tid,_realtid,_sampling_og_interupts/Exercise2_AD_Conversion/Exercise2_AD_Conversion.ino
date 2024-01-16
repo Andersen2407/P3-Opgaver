@@ -16,7 +16,7 @@ void setup() {
 
    // Attach blink as interrupt whenever the buttonPin is RISING (trigger when the pin goes from low -> high)
    attachInterrupt( digitalPinToInterrupt(buttonPin), blink, RISING);
-   pinMode(buttonPin, INPUT);
+   pinMode(buttonPin, INPUT_PULLUP);
 }
 
 void blink(){
@@ -30,7 +30,9 @@ void blink(){
    uint16_t temperature = ADCL;
    temperature += ADCH<<8;
 
-   Serial.println(temperature, DEC); // print it in base 10
+   float t = float(temperature) / 10;
+
+   Serial.println(t, DEC); // print it in base 10
 }
 
 void loop() {}
