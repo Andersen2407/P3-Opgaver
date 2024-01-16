@@ -6,8 +6,8 @@ often just replacing an x with a proper value e.g. DDRx -> DDRB for DDR register
 const int ledPin = 13;
 void setup()
 {
-   // Set digital pin 7 (port 7) as an input
-   pinMode(7, INPUT);
+   // Set digital pin 10 (port 10) as an input
+   pinMode(10, INPUT_PULLUP);
 
 
    // Onboard LED
@@ -17,9 +17,9 @@ void setup()
 
 void loop()
 {
-   // Read the state of digital pin 7
-   int pin7State = digitalRead(7);
-   if (pin7State == HIGH)
+   // Read the state of digital pin 10
+   int pin10State = digitalRead(10);
+   if (pin10State == HIGH)
    {
        digitalWrite(ledPin, HIGH);
    }
