@@ -9,9 +9,11 @@ void setup(){
   /*
    * [Clock / (Prescaler * Desired Freq)] - 1 = Compare match value
    * (16_000_000) / (1024*0.5) -1 = 31249
-   *
-   * Because of drift 31249 is a bit to small. We tried with 34285
-   * It behaves better than 31249.
+   * 
+   * This value will be what the timer is intially set to, and when it reaches its 16-bit maximum of 65000
+   *   it "overflows" and goes back to zero (generating the interrupt).
+   * TCNT1 is the value in which the timer "starts" counting from. For the timer to count 31249, we use the value
+   * 65565 - 31249 = 34285
    */
   TCNT1 = 34285; // Set preloaded time,
   TCCR1B |= B00000101;  // Set prescaler, ...101 = 1024

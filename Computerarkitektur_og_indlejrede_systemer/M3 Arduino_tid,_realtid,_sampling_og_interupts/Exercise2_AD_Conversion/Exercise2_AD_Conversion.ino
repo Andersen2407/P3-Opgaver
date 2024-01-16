@@ -22,13 +22,11 @@ void setup() {
 void blink(){
    // enable fast conversion (spares 13 ticks and doesn't need to set the ADEN bit)
    ADCSRA |= 1<<ADSC;
-
    // wait for conversion to finish (ADSC will be set to 0 again when conversion is finished)
    while (ADCSRA & (1<<ADSC)) {};
 
-   // Load the results 8 lower bits and 8 upper bits into a variable
-   uint16_t temperature = ADCL;
-   temperature += ADCH<<8;
+   uint16_t temperature = ADCL;    // Store the low-bits of the converted value
+   temperature += ADCH<<8;         // Store the high-bits of the converted value (because ADCH is a 8-bit register but represents the high-bits of a 16-bit register, shift it 8 places to the left)
 
    float t = float(temperature) / 10;
 
