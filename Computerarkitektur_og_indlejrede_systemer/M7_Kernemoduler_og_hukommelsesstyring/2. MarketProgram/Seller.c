@@ -10,8 +10,7 @@
 void main()
 {
     int fd_shm = shm_open(SHARED_MEM_NAME, O_RDWR, 0); // mode is 0, because we arent creating a new file
-    if (fd_shm == -1)
-    {
+    if (fd_shm == -1) {
         perror("shm error. Unable to open shared memory.\n");
         exit(1);
     }

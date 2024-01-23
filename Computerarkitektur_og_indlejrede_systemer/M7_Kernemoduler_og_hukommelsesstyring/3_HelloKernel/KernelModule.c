@@ -23,15 +23,13 @@ MODULE_DESCRIPTION("Hello world");
 ///< The version of the module
 MODULE_VERSION("0.1");
  
-static int __init hello_start(void)
-{
+static int __init hello_start(void) {
 	printk(KERN_INFO "Loading hello module...\n");
 	printk(KERN_INFO "Hello world\n");
 	return 0;
 }
  
-static void __exit hello_end(void)
-{
+static void __exit hello_end(void) {
 	printk(KERN_INFO "Goodbye Mr.\n");
 }
  

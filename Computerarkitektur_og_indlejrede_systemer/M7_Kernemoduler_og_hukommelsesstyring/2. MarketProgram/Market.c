@@ -19,8 +19,7 @@ void main()
     int fd_shm = shm_open(SHARED_MEM_NAME, O_RDWR | O_CREAT, 0660); //
 
     // If we were not able to acess the shared memory.
-    if (fd_shm == -1)
-    {
+    if (fd_shm == -1) {
         perror("shm error. Unable to open shared memory.\n");
         exit(1);
     }

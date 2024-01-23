@@ -48,15 +48,13 @@ void main()
     signal(SIGALRM, timer_callback);    // Make  signal alarm (will signal after n seconds)
 
     int fd_shm = shm_open(SHARED_MEM_NAME, O_RDWR, 0); // mode is 0, because we arent creating a new file
-    if (fd_shm == -1)
-    {
+    if (fd_shm == -1) {
         perror("shm error. Unable to open shared memory.\n");
         exit(1);
     }
 
     sh_ptr = mmap(NULL, sizeof(struct Market), PROT_READ | PROT_WRITE, MAP_SHARED, fd_shm, 0);
-    if (sh_ptr == MAP_FAILED)
-    {
+    if (sh_ptr == MAP_FAILED) {
         perror("mmap");
         exit(1);
     }

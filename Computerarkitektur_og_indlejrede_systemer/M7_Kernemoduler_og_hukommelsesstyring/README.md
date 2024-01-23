@@ -33,7 +33,7 @@ You may reuse code from previous.
         Open three terminals, one to run each c file, run in following order.   
         `$ ./Market`  
         `$ ./Seller`  
-        `$ ./Buyer`  
+        `$ ./Buyer`
         Note: There is a max on the amount of books.  
      
         Additional: (To inspect the shared memory - displays a hexdump of shared memory file)  
@@ -48,14 +48,10 @@ You may reuse code from previous.
       `$ make` - Run makefile to compile  
       `$ sudo insmod KernelModule.ko` - Inserts code into kernel and runs it  
       
-      Additional:  
-     `Ismod | grep "Kernel"` - Checks that the module is inserted.  
+      Additional:
+     `$ lsmod | grep "Kernel"` - Checks that the module is inserted.  
      `$ modinfo KernelModule.ko` - Program to show information about a Linux Kernel module.  
      `$ dmesg` - Prints out the message buffer of the kernel  
      `$ rmmod KernelModule` - Removes module from kernel.  
      `$ lsmod | grep "Kernel"` - Checks that the module is removed.  
-     
-     
-     
 
-        

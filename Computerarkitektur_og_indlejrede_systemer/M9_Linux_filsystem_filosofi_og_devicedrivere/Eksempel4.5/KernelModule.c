@@ -31,8 +31,7 @@ module_param(myshort, short, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
 MODULE_PARM_DESC(myshort, "A short integer tihi"); 
 
 
-static int __init hello_start(void)
-{
+static int __init hello_start(void) {
 	printk(KERN_INFO "Loading hello module...\n");
 	printk(KERN_INFO "Hello world\n");
 	pr_info("hello %i", myshort);

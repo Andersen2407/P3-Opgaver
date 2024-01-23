@@ -15,7 +15,7 @@ static int nrBytesWrittenFromStart = 0;
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Gruppe253");
 MODULE_DESCRIPTION("Character device driver for reading, writing, etc.");
-MODULE_VERSION("1.0"); 
+MODULE_VERSION("1.0");
 
 static int chardev_open(struct inode *inode, struct file *filp) {
     printk(KERN_INFO "Device opened\n");
